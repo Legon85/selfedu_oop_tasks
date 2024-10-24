@@ -1,6 +1,14 @@
 class SingletonFive:
+    __instance = None
+    instance_count = 0
+
     def __new__(cls, *args, **kwargs):
-        return super().__new__(cls)
+        if cls.__instance is None and cls.instance_count <= 5:
+            cls.instance_count =+ 1
+            cls.__instance = super().__new__(cls)
+            return cls.__instance
+        else:
+            
 
     def __init__(self, name):
         self.name = name
